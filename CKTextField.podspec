@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/JaNd3r/CKTextField"
-  #s.screenshots  = "https://raw.githubusercontent.com/JaNd3r/CKCircleMenuView/master/CircleMenuDemo1.gif", "https://raw.githubusercontent.com/JaNd3r/CKCircleMenuView/master/CircleMenuDemo1.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/JaNd3r/CKTextField/master/CKTextFieldDemo.gif"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Christian Klaproth" => "ck@cm-works.de" }
