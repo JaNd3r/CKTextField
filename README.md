@@ -15,7 +15,7 @@ Of course you can also use CKTextField with left or right text alignment to have
 
 Add CKTextField to your project by copying the .h and .m files, or use CocoaPods.
 
-Simply set the class property in the Interface Builder to CKTextField and you're done. All other layout information is taken from the settings you made in Interface Builder.
+Simply set the UITextField's class property in the Interface Builder to CKTextField and you're done. All other layout information is taken from the settings you made in Interface Builder.
 
 ## Author
 
