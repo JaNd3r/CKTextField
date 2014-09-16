@@ -1,15 +1,17 @@
 CKTextField
 ===========
 
-Enhanced `UITextField`, for improved visuals with centered placeholder.
+Enhanced `UITextField`, with improved visuals for a sweet UX.
 
-Have you ever built a UI with a `UITextField` that has a placeholder text and a `NSTextAlignmentCenter`? Give it a try (or look at the demo provided in this repo)! You will notice that the cursor behaves weird and is placed at the beginning of the placeholder text. The `CKTextField` fixes that behaviour at the cost of sacrificing the text field's left view. It also adds a nice, subtle animation to the placeholder text when it appears and disappears. And it let's you still register as `UITextFieldDelegate`.
+![](CKTextFieldDemo2.gif)
 
-_CKTextField does this by using 100% public API!_
+Add input validation to your text fields. Give the user visual feedback of the validation result! Validation failed? Shake the text field! Validation passed? Show an accept button which allows to end editing and hide the keyboard!
+
+`CKTextField` also fixes the cursor misplacement of the original `UITextField` when using a placeholder in combination with centered alignment. 
 
 ![](CKTextFieldDemo.gif)
 
-Of course you can also use CKTextField with left or right text alignment to have the subtle placeholder animation.
+_CKTextField does this by using 100% public API!_
 
 ## Usage
 
