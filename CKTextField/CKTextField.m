@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL readyForExternalDelegate;
 @property (nonatomic, weak) id<UITextFieldDelegate> externalDelegate;
 @property (nonatomic) UIButton* acceptButton;
+@property (nonatomic) NSTextAlignment originalTextAlignment;
 
 @end
 
@@ -44,11 +45,13 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             [self addSubview:self.placeholderLabel];
             
             if (self.textAlignment == NSTextAlignmentCenter) {
+                self.originalTextAlignment = self.textAlignment;
                 UIView* tLeftView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height)];
                 tLeftView.backgroundColor = [UIColor clearColor];
                 tLeftView.userInteractionEnabled = NO;
                 self.leftView = tLeftView;
                 self.leftViewMode = UITextFieldViewModeWhileEditing;
+                self.textAlignment = NSTextAlignmentLeft;
             }
 
             if (self.text.length > 0) {
@@ -78,8 +81,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     if ([self performValidationOnInput:text]) {
         [super setText:text];
         if (self.text.length == 0 && self.placeholderLabel.hidden) {
-            if (self.textAlignment == NSTextAlignmentCenter) {
+            if (self.originalTextAlignment == NSTextAlignmentCenter) {
                 self.leftView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height);
+                self.textAlignment = NSTextAlignmentLeft;
             }
             self.placeholderLabel.alpha = 0.0;
             self.placeholderLabel.hidden = NO;
@@ -87,8 +91,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
                 self.placeholderLabel.alpha = 1.0;
             }];
         } else if (self.text.length > 0 && !self.placeholderLabel.hidden) {
-            if (self.textAlignment == NSTextAlignmentCenter) {
+            if (self.originalTextAlignment == NSTextAlignmentCenter) {
                 self.leftView.frame = CGRectMake(0.0, 0.0, 0.0, self.bounds.size.height);
+                self.textAlignment = NSTextAlignmentCenter;
             }
             if (!self.placeholderHideInProgress) {
                 self.placeholderHideInProgress = YES;
