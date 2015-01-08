@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CKExternalKeyboardSupportedTextField.h"
 
 @class CKTextField;
 
@@ -28,7 +29,7 @@ enum CKTextFieldValidationResult {
 
 @end
 
-@interface CKTextField : UITextField
+@interface CKTextField : CKExternalKeyboardSupportedTextField
 
 //
 // User Defined Runtime Attributes (--> Storyboard!)

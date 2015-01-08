@@ -257,6 +257,12 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     [self resignFirstResponder];
 }
 
+- (void)internalEnterPressed
+{
+    [self acceptButtonTouchUpInside];
+    [super internalEnterPressed];
+}
+
 #pragma mark Text Field Delegate
 
 - (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string
