@@ -3,6 +3,9 @@ CKTextField
 
 Enhanced `UITextField`, with improved visuals for a sweet UX.
 
+[![Version](https://cocoapod-badges.herokuapp.com/v/CKTextField/badge.png)](http://cocoadocs.org/docsets/CKTextField)
+[![Platform](https://cocoapod-badges.herokuapp.com/p/CKTextField/badge.png)](http://cocoadocs.org/docsets/CKTextField)
+
 ![](CKTextFieldDemo2.gif)
 
 Add input validation to your text fields. Give the user visual feedback of the validation result! Validation failed? Shake the text field! Validation passed? Show an accept button which allows to end editing and hide the keyboard!
