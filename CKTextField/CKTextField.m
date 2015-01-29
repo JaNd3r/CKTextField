@@ -76,6 +76,15 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.placeholderLabel) {
+        self.placeholderLabel.frame = CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height);
+    }
+}
+
 - (void)setText:(NSString*)text
 {
     if ([self performValidationOnInput:text]) {
