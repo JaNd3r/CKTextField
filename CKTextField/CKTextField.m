@@ -83,6 +83,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     if (self.placeholderLabel) {
         self.placeholderLabel.frame = CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height);
     }
+    if (self.originalTextAlignment == NSTextAlignmentCenter) {
+        self.leftView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height);
+    }
 }
 
 - (void)setText:(NSString*)text
