@@ -89,6 +89,7 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
 {
     if ([self performValidationOnInput:text]) {
         [super setText:text];
+        [self sendActionsForControlEvents:UIControlEventEditingChanged];
         if (self.text.length == 0 && self.placeholderLabel.hidden) {
             if (self.originalTextAlignment == NSTextAlignmentCenter) {
                 self.leftView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height);
