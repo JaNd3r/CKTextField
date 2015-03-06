@@ -43,6 +43,7 @@ enum CKTextFieldValidationResult {
 @property (nonatomic) NSString* maxLength;
 @property (nonatomic) NSString* minValue;
 @property (nonatomic) NSString* maxValue;
+@property (nonatomic) NSString* pattern;
 
 //                                                       *
 //                                                       *

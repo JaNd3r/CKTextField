@@ -143,8 +143,15 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     if (self.validationType && self.validationType.length > 0) {
         // validation type is set
         if ([self.validationType isEqualToString:VALIDATION_TYPE_TEXT]) {
-            int tMinLength = [self.minLength intValue];
-            int tMaxLength = [self.maxLength intValue];
+            int tMinLength;
+            int tMaxLength;
+            if (self.pattern && self.pattern.length > 0) {
+                tMinLength = self.pattern.length;
+                tMaxLength = self.pattern.length;
+            } else {
+                tMinLength = [self.minLength intValue];
+                tMaxLength = [self.maxLength intValue];
+            }
             
             // While aString.length is smaller than tMinLength, the
             // validation result is unknown. Give the user the chance
@@ -176,6 +183,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         
         if ([self.validationType isEqualToString:VALIDATION_TYPE_INTEGER]) {
             NSString* tValidCharacters = @"0123456789";
+            if (self.pattern && self.pattern.length > 0) {
+                tValidCharacters = [NSString stringWithFormat:@"%@%@", tValidCharacters, [self.pattern stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+            }
             for (int i=0; i<aString.length; i++) {
                 NSString* tCharacter = [aString substringWithRange:NSMakeRange(i, 1)];
                 if ([tValidCharacters rangeOfString:tCharacter].location == NSNotFound) {
@@ -212,6 +222,54 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     }
     
     return YES;
+}
+
+/**
+ * Format string syntax: '#' means 'any character in the plain string'
+ * Other characters will be moved as they are from the pattern into the formatted string.
+ * Note: Currently only '#' is supported as the 'any character' placeholder.
+ * Escaping or other meaningful placeholders are added later (eventually). :)
+ */
+- (NSString*)formatPlainString:(NSString*)aString withPattern:(NSString*)aPattern {
+    NSString* tResultString = @"";
+    int tPlainPointer = 0;
+    for (int i=0; i<aPattern.length; i++) {
+        
+        // check if end of aString is reached
+        if (tPlainPointer == aString.length) {
+            return tResultString;
+        }
+        
+        // determine current character at position i
+        if ([[aPattern substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"#"]) {
+            // content character
+            tResultString = [NSString stringWithFormat:@"%@%@", tResultString, [aString substringWithRange:NSMakeRange(tPlainPointer, 1)]];
+            tPlainPointer++;
+        } else {
+            tResultString = [NSString stringWithFormat:@"%@%@", tResultString, [aPattern substringWithRange:NSMakeRange(i, 1)]];
+        }
+    }
+    
+    // if plain string contains more characters append them and let the
+    // validation routine handle the limit checks
+    if (aString.length > tPlainPointer) {
+        tResultString = [NSString stringWithFormat:@"%@%@", tResultString, [aString substringFromIndex:tPlainPointer]];
+    }
+    
+    return tResultString;
+}
+
+/**
+ * Removes the pattern section characters from an already formatted string.
+ * e.g. 1-100/20/30 => 11002030
+ */
+- (NSString*)stripPattern:(NSString*)aPattern fromFormattedString:(NSString*)aString {
+    NSString* tSeparatorsString = [aPattern stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    NSString* tResultString = aString;
+    for (int i=0; i<tSeparatorsString.length; i++) {
+        tResultString = [tResultString stringByReplacingOccurrencesOfString:[tSeparatorsString substringWithRange:NSMakeRange(i, 1)] withString:@""];
+    }
+    return tResultString;
 }
 
 - (void)shake
@@ -280,12 +338,29 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
 
 - (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string
 {
+    // If an 'external' delegate implements this method, it is responsible for allowing the
+    // changed characters to be set as text of the text field.
     if (self.externalDelegate && [self.externalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-        if (![self.externalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string]) {
-            return NO;
-        }
+        return ([self.externalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string]);
     }
+    
+    // Create the resulting new content of the text field.
     NSString* tNewString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    // apply pattern if set
+    if (self.pattern && self.pattern.length > 0) {
+        
+        // allow input of mask characters if they match with the pattern string
+        if (![string isEqualToString:@"#"]) {
+            if (self.pattern.length > textField.text.length && [[self.pattern substringWithRange:NSMakeRange(textField.text.length, 1)] isEqualToString:string]) {
+                return YES;
+            }
+        }
+
+        NSString* tPlainString = [self stripPattern:self.pattern fromFormattedString:tNewString];
+        tNewString = [self formatPlainString:tPlainString withPattern:self.pattern];
+    }
+    
     self.text = tNewString;
     return NO;
 }
