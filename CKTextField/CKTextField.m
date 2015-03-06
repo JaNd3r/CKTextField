@@ -146,8 +146,8 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             int tMinLength;
             int tMaxLength;
             if (self.pattern && self.pattern.length > 0) {
-                tMinLength = self.pattern.length;
-                tMaxLength = self.pattern.length;
+                tMinLength = (int)self.pattern.length;
+                tMaxLength = (int)self.pattern.length;
             } else {
                 tMinLength = [self.minLength intValue];
                 tMaxLength = [self.maxLength intValue];
