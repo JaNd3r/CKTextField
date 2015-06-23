@@ -38,12 +38,12 @@ enum CKTextFieldValidationResult {
 //                                                       *
 //                                                       *
 
-@property (nonatomic) NSString* validationType;
-@property (nonatomic) NSString* minLength;
-@property (nonatomic) NSString* maxLength;
-@property (nonatomic) NSString* minValue;
-@property (nonatomic) NSString* maxValue;
-@property (nonatomic) NSString* pattern;
+@property (nonatomic) IBInspectable NSString* validationType;
+@property (nonatomic) IBInspectable NSString* minLength;
+@property (nonatomic) IBInspectable NSString* maxLength;
+@property (nonatomic) IBInspectable NSString* minValue;
+@property (nonatomic) IBInspectable NSString* maxValue;
+@property (nonatomic) IBInspectable NSString* pattern;
 
 //                                                       *
 //                                                       *
