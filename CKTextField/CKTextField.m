@@ -125,6 +125,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
 
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
+    if ([delegate isEqual:self.delegate]) {
+        return;
+    }
     if (self.readyForExternalDelegate) {
         self.externalDelegate = delegate;
     } else {
@@ -134,7 +137,6 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         [super setDelegate:delegate];
     }
 }
-
 /**
  * @return YES, if the string should be set into the textfield
  */
