@@ -135,6 +135,14 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         [super setDelegate:delegate];
     }
 }
+
+- (void)setPlaceholder:(NSString*)placeholder
+{
+    self.originalPlaceholder = placeholder;
+    self.placeholderLabel.text = placeholder;
+    super.placeholder = nil;
+}
+
 /**
  * @return YES, if the string should be set into the textfield
  */
