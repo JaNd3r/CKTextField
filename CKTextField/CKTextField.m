@@ -18,6 +18,8 @@
 @property (nonatomic) UIButton* acceptButton;
 @property (nonatomic) NSTextAlignment originalTextAlignment;
 
+@property (nonatomic) UILabel* autocompleteLabel;
+
 @end
 
 static NSString* VALIDATION_TYPE_INTEGER = @"integer";
@@ -35,6 +37,14 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             self.delegate = self;
             self.readyForExternalDelegate = YES;
             self.placeholder = nil;
+            
+            self.autocompleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
+            self.autocompleteLabel.backgroundColor = [UIColor clearColor];
+            self.autocompleteLabel.textAlignment = self.textAlignment;
+            self.autocompleteLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+            self.autocompleteLabel.font = self.font;
+            self.autocompleteLabel.hidden = YES;
+            [self addSubview:self.autocompleteLabel];
             
             self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
             self.placeholderLabel.backgroundColor = [UIColor clearColor];
@@ -80,6 +90,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
 {
     [super layoutSubviews];
     
+    if (self.autocompleteLabel) {
+        self.autocompleteLabel.frame = CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height);
+    }
     if (self.placeholderLabel) {
         self.placeholderLabel.frame = CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height);
     }
@@ -98,6 +111,8 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
                 self.leftView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height);
                 self.textAlignment = NSTextAlignmentLeft;
             }
+            self.autocompleteLabel.text = @"";
+            self.autocompleteLabel.hidden = YES;
             self.placeholderLabel.alpha = 0.0;
             self.placeholderLabel.hidden = NO;
             [UIView animateWithDuration:0.3 animations:^{
@@ -369,6 +384,34 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         tNewString = [self formatPlainString:tPlainString withPattern:self.pattern];
     }
     
+    if (self.autocompleteValues.count > 0 && self.originalTextAlignment == NSTextAlignmentLeft) {
+        // first search for exact match
+        NSPredicate* tExactPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", tNewString];
+        NSArray* tExactValues = [self.autocompleteValues filteredArrayUsingPredicate:tExactPredicate];
+        if (tExactValues.count > 0) {
+            // exact match = do not show autocompletion
+            self.autocompleteLabel.text = @"";
+            self.autocompleteLabel.hidden = YES;
+        
+        } else {
+        
+            // second search for prefix match
+            NSPredicate* tPredicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", tNewString];
+            NSArray* tFilteredValues = [self.autocompleteValues filteredArrayUsingPredicate:tPredicate];
+            if (tFilteredValues.count > 0) {
+                self.autocompleteLabel.text = [tFilteredValues firstObject];
+                self.autocompleteLabel.alpha = 0.0;
+                self.autocompleteLabel.hidden = NO;
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.autocompleteLabel.alpha = 1.0;
+                }];
+            } else {
+                self.autocompleteLabel.text = @"";
+                self.autocompleteLabel.hidden = YES;
+            }
+        }
+    }
+    
     self.text = tNewString;
     return NO;
 }
@@ -405,6 +448,9 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+    if (self.autocompleteLabel.text && self.autocompleteLabel.text.length > 0) {
+        textField.text = self.autocompleteLabel.text;
+    }
     if (self.externalDelegate && [self.externalDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
         return [self.externalDelegate textFieldShouldEndEditing:textField];
     }

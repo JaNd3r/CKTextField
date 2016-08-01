@@ -51,6 +51,15 @@ enum CKTextFieldValidationResult {
 
 @property (nonatomic, weak) id<CKTextFieldValidationDelegate> validationDelegate;
 
+/**
+ * Set autocomplete values to enable autocompletion. Note that values will be
+ * suggested in the order they are provided. Pass in a sorted array if you want
+ * your values to be suggested in sorted order.
+ * Please note, that inplace autocompletion will only work with left-aligned
+ * text fields.
+ */
+@property (nonatomic) NSArray* autocompleteValues;
+
 - (void)shake;
 - (void)showAcceptButton;
 - (void)hideAcceptButton;
