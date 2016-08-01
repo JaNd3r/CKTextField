@@ -112,10 +112,8 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
                 self.placeholderHideInProgress = YES;
                 [UIView animateWithDuration:0.3 animations:^{
                     self.placeholderLabel.alpha = 0.0;
-                    self.placeholderLabel.transform = CGAffineTransformMakeScale(1.1, 1.1);
                 } completion:^(BOOL finished) {
                     self.placeholderLabel.hidden = YES;
-                    self.placeholderLabel.transform = CGAffineTransformIdentity;
                     self.placeholderHideInProgress = NO;
                 }];
             }
