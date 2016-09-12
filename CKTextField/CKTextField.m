@@ -36,7 +36,7 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             self.readyForExternalDelegate = NO;
             self.delegate = self;
             self.readyForExternalDelegate = YES;
-            self.placeholder = nil;
+            super.placeholder = nil;
             
             self.autocompleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
             self.autocompleteLabel.backgroundColor = [UIColor clearColor];
