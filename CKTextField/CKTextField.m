@@ -214,8 +214,8 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
                 if ([tValidCharacters rangeOfString:tCharacter].location == NSNotFound) {
                     if (self.validationDelegate && [self.validationDelegate respondsToSelector:@selector(textField:validationResult:forText:)]) {
                         [self.validationDelegate textField:self validationResult:CKTextFieldValidationFailed forText:aString];
-                        return NO;
                     }
+                    return NO;
                 }
             }
             
