@@ -41,14 +41,14 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             self.autocompleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
             self.autocompleteLabel.backgroundColor = [UIColor clearColor];
             self.autocompleteLabel.textAlignment = self.textAlignment;
-            self.autocompleteLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+            self.autocompleteLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
             self.autocompleteLabel.font = self.font;
             self.autocompleteLabel.hidden = YES;
             [self addSubview:self.autocompleteLabel];
             
             self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
             self.placeholderLabel.backgroundColor = [UIColor clearColor];
-            self.placeholderLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+            self.placeholderLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
             self.placeholderLabel.textAlignment = self.textAlignment;
             self.placeholderLabel.text = self.originalPlaceholder;
             self.placeholderLabel.font = self.font;
