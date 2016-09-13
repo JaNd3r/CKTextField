@@ -24,3 +24,7 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 # Pods/
+TextFieldDemo/TextFieldDemo.xcworkspace/contents.xcworkspacedata
+TextFieldSwiftDemo/TextFieldSwiftDemo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+TextFieldSwiftDemo/TextFieldSwiftDemo.xcworkspace/contents.xcworkspacedata
+contents.xcworkspacedata
