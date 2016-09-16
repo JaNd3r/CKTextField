@@ -443,6 +443,7 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     if (self.externalDelegate && [self.externalDelegate respondsToSelector:@selector(textFieldShouldClear:)]) {
         return [self.externalDelegate textFieldShouldClear:textField];
     }
+    [self setText:@""];
     return YES;
 }
 
