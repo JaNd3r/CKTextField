@@ -16,7 +16,6 @@
 @property (nonatomic) BOOL readyForExternalDelegate;
 @property (nonatomic, weak) id<UITextFieldDelegate> externalDelegate;
 @property (nonatomic) UIButton* acceptButton;
-@property (nonatomic) NSTextAlignment originalTextAlignment;
 
 @property (nonatomic) UILabel* autocompleteLabel;
 
@@ -54,16 +53,6 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
             self.placeholderLabel.font = self.font;
             [self addSubview:self.placeholderLabel];
             
-            if (self.textAlignment == NSTextAlignmentCenter) {
-                self.originalTextAlignment = self.textAlignment;
-                UIView* tLeftView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height)];
-                tLeftView.backgroundColor = [UIColor clearColor];
-                tLeftView.userInteractionEnabled = NO;
-                self.leftView = tLeftView;
-                self.leftViewMode = UITextFieldViewModeWhileEditing;
-                self.textAlignment = NSTextAlignmentLeft;
-            }
-
             if (self.text.length > 0) {
                 self.placeholderLabel.hidden = YES;
             } else {
@@ -107,10 +96,6 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         [super setText:text];
         [self sendActionsForControlEvents:UIControlEventEditingChanged];
         if (self.text.length == 0 && self.placeholderLabel.hidden) {
-            if (self.originalTextAlignment == NSTextAlignmentCenter) {
-                self.leftView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width / 2 - 8, self.bounds.size.height);
-                self.textAlignment = NSTextAlignmentLeft;
-            }
             self.autocompleteLabel.text = @"";
             self.autocompleteLabel.hidden = YES;
             self.placeholderLabel.alpha = 0.0;
@@ -119,10 +104,6 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
                 self.placeholderLabel.alpha = 1.0;
             }];
         } else if (self.text.length > 0 && !self.placeholderLabel.hidden) {
-            if (self.originalTextAlignment == NSTextAlignmentCenter) {
-                self.leftView.frame = CGRectMake(0.0, 0.0, 0.0, self.bounds.size.height);
-                self.textAlignment = NSTextAlignmentCenter;
-            }
             if (!self.placeholderHideInProgress) {
                 self.placeholderHideInProgress = YES;
                 [UIView animateWithDuration:0.3 animations:^{
@@ -384,7 +365,7 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
         tNewString = [self formatPlainString:tPlainString withPattern:self.pattern];
     }
     
-    if (self.autocompleteValues.count > 0 && self.originalTextAlignment == NSTextAlignmentLeft) {
+    if (self.autocompleteValues.count > 0 && self.textAlignment == NSTextAlignmentLeft) {
         // first search for exact match
         NSPredicate* tExactPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", tNewString];
         NSArray* tExactValues = [self.autocompleteValues filteredArrayUsingPredicate:tExactPredicate];
