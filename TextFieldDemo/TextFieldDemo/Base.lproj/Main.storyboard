@@ -1,33 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TextFieldDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4S-Vf-UC8">
-                                <rect key="frame" x="66" y="76" width="189" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original UITextField" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hob-l8-1ZZ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTo-UG-dCb">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="bCo-9T-d9l"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="gDF-oG-Arf"/>
-                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bwh-MH-cbF" customClass="CKTextField">
-                                <rect key="frame" x="66" y="169" width="189" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CKTextField" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpY-Nj-ig3">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-KE-Z8R" customClass="CKTextField">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="gHT-0B-q6z"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="validationType" value="text"/>
@@ -35,66 +50,77 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="maxLength" value="12"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="EgE-R5-WwP"/>
+                                    <action selector="demoTextFieldEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="xPg-9M-Hfu"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Original UITextField" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5g-O3-xPE">
-                                <rect key="frame" x="20" y="38" width="280" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Validation Type = text, min = 6, max = 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6y-Gr-O37">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CKTextField" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfK-Tg-iXd">
-                                <rect key="frame" x="20" y="131" width="280" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuV-Fk-J9g">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="textField:didEndEditing:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHO-t9-ldL">
-                                <rect key="frame" x="20" y="246" width="160" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJs-SH-2pt">
-                                <rect key="frame" x="188" y="246" width="112" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="minLength = 6, maxLength = 12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtD-aE-xAb">
-                                <rect key="frame" x="66" y="207" width="189" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pattern #-###/##.##" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tHM-hH-bNt" customClass="CKTextField">
-                                <rect key="frame" x="52" y="298" width="216" height="40"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7RA-uP-e1K" customClass="CKTextField">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="r50-w2-ZZd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="validationType" value="text"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="pattern" value="#-###/##.##"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="validationType" value="integer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="minValue" value="100"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="maxValue" value="9999"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="demoTextFieldEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="6Rf-ac-CWV"/>
+                                </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Validation Type = integer, min = 100, max = 9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyi-BI-A0S">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="textField:didEndEditing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9V-Mg-fbf">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oTo-UG-dCb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ANw-NE-Htr"/>
+                            <constraint firstItem="Hob-l8-1ZZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cv2-iX-q3x"/>
+                            <constraint firstItem="wyi-BI-A0S" firstAttribute="top" secondItem="7RA-uP-e1K" secondAttribute="bottom" constant="8" id="ECl-na-SFo"/>
+                            <constraint firstItem="vPv-KE-Z8R" firstAttribute="top" secondItem="mpY-Nj-ig3" secondAttribute="bottom" constant="8" id="EoR-7c-0nh"/>
+                            <constraint firstItem="Hob-l8-1ZZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="FZ0-TX-Pvy"/>
+                            <constraint firstItem="7RA-uP-e1K" firstAttribute="top" secondItem="M6y-Gr-O37" secondAttribute="bottom" constant="8" id="HfH-Lp-bbk"/>
+                            <constraint firstItem="mpY-Nj-ig3" firstAttribute="top" secondItem="oTo-UG-dCb" secondAttribute="bottom" constant="8" id="Id5-eX-OTg"/>
+                            <constraint firstItem="E9V-Mg-fbf" firstAttribute="top" secondItem="wyi-BI-A0S" secondAttribute="bottom" constant="12" id="K4W-Lc-XTf"/>
+                            <constraint firstItem="vPv-KE-Z8R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MKb-TY-2xT"/>
+                            <constraint firstItem="oTo-UG-dCb" firstAttribute="top" secondItem="Hob-l8-1ZZ" secondAttribute="bottom" constant="8" id="RJb-Su-0p0"/>
+                            <constraint firstItem="E9V-Mg-fbf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VAm-4H-W4q"/>
+                            <constraint firstItem="mpY-Nj-ig3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XzY-qf-s8k"/>
+                            <constraint firstItem="M6y-Gr-O37" firstAttribute="top" secondItem="vPv-KE-Z8R" secondAttribute="bottom" constant="4" id="f9V-pf-lf0"/>
+                            <constraint firstItem="M6y-Gr-O37" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="izY-SW-Pqa"/>
+                            <constraint firstItem="7RA-uP-e1K" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kvj-7V-YU8"/>
+                            <constraint firstItem="UuV-Fk-J9g" firstAttribute="centerY" secondItem="E9V-Mg-fbf" secondAttribute="centerY" id="l5C-0L-1pW"/>
+                            <constraint firstItem="wyi-BI-A0S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sRB-P2-ffb"/>
+                            <constraint firstItem="UuV-Fk-J9g" firstAttribute="leading" secondItem="E9V-Mg-fbf" secondAttribute="trailing" constant="8" id="ska-A7-HoS"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="ckTextField" destination="Bwh-MH-cbF" id="Hj1-9j-T8M"/>
-                        <outlet property="latestEditLabel" destination="sJs-SH-2pt" id="bQK-2s-bG2"/>
-                        <outlet property="numericCKTextField" destination="tHM-hH-bNt" id="hXI-lP-2zq"/>
+                        <outlet property="demoTextField" destination="vPv-KE-Z8R" id="n5V-ud-LlW"/>
+                        <outlet property="integerTextField" destination="7RA-uP-e1K" id="cak-k9-E8f"/>
+                        <outlet property="latestEditLabel" destination="UuV-Fk-J9g" id="bOQ-Qa-3YP"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="138.98050974512745"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

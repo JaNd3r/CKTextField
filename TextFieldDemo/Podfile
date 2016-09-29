@@ -1,3 +1,12 @@
-platform :ios, '8.0'
+project 'TextFieldDemo.xcodeproj'
 
-pod 'CKTextField', :path => "../CKTextField.podspec"
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TextFieldDemo' do
+  use_frameworks!
+
+  # Pods for TextFieldDemo
+  pod 'CKTextField', :path => "../CKTextField.podspec"
+
+end
