@@ -32,45 +32,46 @@ static NSString* VALIDATION_TYPE_TEXT = @"text";
     if (self) {
         if (self.placeholder) {
             self.originalPlaceholder = self.placeholder;
-            self.readyForExternalDelegate = NO;
-            self.delegate = self;
-            self.readyForExternalDelegate = YES;
             super.placeholder = nil;
-            
-            self.autocompleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
-            self.autocompleteLabel.backgroundColor = [UIColor clearColor];
-            self.autocompleteLabel.textAlignment = self.textAlignment;
-            self.autocompleteLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
-            self.autocompleteLabel.font = self.font;
-            self.autocompleteLabel.hidden = YES;
-            [self addSubview:self.autocompleteLabel];
-            
-            self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
-            self.placeholderLabel.backgroundColor = [UIColor clearColor];
-            self.placeholderLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
-            self.placeholderLabel.textAlignment = self.textAlignment;
-            self.placeholderLabel.text = self.originalPlaceholder;
-            self.placeholderLabel.font = self.font;
-            [self addSubview:self.placeholderLabel];
-            
-            if (self.text.length > 0) {
-                self.placeholderLabel.hidden = YES;
-            } else {
-                self.placeholderLabel.hidden = NO;
-            }
-            
-            self.placeholderHideInProgress = NO;
-            
-            self.acceptButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [self.acceptButton setBackgroundImage:[UIImage imageNamed:@"accept"] forState:UIControlStateNormal];
-            self.acceptButton.frame = CGRectMake(self.bounds.size.width, 2.0, self.bounds.size.height - 4.0, self.bounds.size.height - 4.0);
-            self.acceptButton.backgroundColor = [UIColor colorWithRed:0.5 green:0.75 blue:0.5 alpha:1.0];
-            self.acceptButton.layer.cornerRadius = (self.bounds.size.height - 4.0) / 2;
-            self.acceptButton.userInteractionEnabled = YES;
-            self.acceptButton.hidden = YES;
-            [self.acceptButton addTarget:self action:@selector(acceptButtonTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:self.acceptButton];
         }
+        
+        self.readyForExternalDelegate = NO;
+        self.delegate = self;
+        self.readyForExternalDelegate = YES;
+            
+        self.autocompleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
+        self.autocompleteLabel.backgroundColor = [UIColor clearColor];
+        self.autocompleteLabel.textAlignment = self.textAlignment;
+        self.autocompleteLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+        self.autocompleteLabel.font = self.font;
+        self.autocompleteLabel.hidden = YES;
+        [self addSubview:self.autocompleteLabel];
+            
+        self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, self.bounds.size.width - 14.0, self.bounds.size.height)];
+        self.placeholderLabel.backgroundColor = [UIColor clearColor];
+        self.placeholderLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+        self.placeholderLabel.textAlignment = self.textAlignment;
+        self.placeholderLabel.text = self.originalPlaceholder;
+        self.placeholderLabel.font = self.font;
+        [self addSubview:self.placeholderLabel];
+            
+        if (self.text.length > 0) {
+            self.placeholderLabel.hidden = YES;
+        } else {
+            self.placeholderLabel.hidden = NO;
+        }
+            
+        self.placeholderHideInProgress = NO;
+            
+        self.acceptButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.acceptButton setBackgroundImage:[UIImage imageNamed:@"accept"] forState:UIControlStateNormal];
+        self.acceptButton.frame = CGRectMake(self.bounds.size.width, 2.0, self.bounds.size.height - 4.0, self.bounds.size.height - 4.0);
+        self.acceptButton.backgroundColor = [UIColor colorWithRed:0.5 green:0.75 blue:0.5 alpha:1.0];
+        self.acceptButton.layer.cornerRadius = (self.bounds.size.height - 4.0) / 2;
+        self.acceptButton.userInteractionEnabled = YES;
+        self.acceptButton.hidden = YES;
+        [self.acceptButton addTarget:self action:@selector(acceptButtonTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.acceptButton];
     }
     return self;
 }
