@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CKTextField"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "An improved version of the original UITextField."
 
   s.description  = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.requires_arc = true
 
-  s.source       = { :git => "https://github.com/JaNd3r/CKTextField.git", :tag => "0.3.0" }
+  s.source       = { :git => "https://github.com/JaNd3r/CKTextField.git", :tag => "0.3.1" }
 
   s.source_files  = "CKTextField/*.{h,m}"
 
